@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { ordered, restocked } from "./cakeSlice";
 
 const CakeView = () => {
-  const [orderedValue, setOrderedValue] = useState(1);
+  const [orderedValue, setOrderedValue] = useState(0);
+  const [restockedValue, setRestockedValue] = useState(0);
   const cakeSelector = useSelector((state) => state.cake.noOfCakes);
   const dispatch = useDispatch();
   return (
@@ -15,7 +16,14 @@ const CakeView = () => {
         onChange={(e) => setOrderedValue(parseInt(e.target.value))}
       />
       <button onClick={() => dispatch(ordered(orderedValue))}>Ordered</button>
-      <button onClick={() => dispatch(restocked(3))}>Restocked</button>
+      <input
+        type="number"
+        value={restockedValue}
+        onChange={(e) => setRestockedValue(parseInt(e.target.value))}
+      />
+      <button onClick={() => dispatch(restocked(restockedValue))}>
+        Restocked
+      </button>
     </>
   );
 };
