@@ -9,11 +9,11 @@ const icecreamSlice = createSlice({
   name: "icecream",
   initialState,
   reducers: {
-    ordered: (state) => {
-      state.noOfIcecream--;
+    ordered: (state, action) => {
+      if (state.noOfIcecream > 0) state.noOfIcecream -= action.payload;
     },
     restocked: (state, action) => {
-      state.noOfIcecream += action.payload;
+      if (state.noOfIcecream <= 100) state.noOfIcecream += action.payload;
     },
   },
   extraReducers: (builder) => {
