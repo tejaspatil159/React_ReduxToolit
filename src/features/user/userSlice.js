@@ -11,6 +11,7 @@ export const fetchUsers = createAsyncThunk("user/fetchUsers", async () => {
   const response = await axios.get(
     "https://jsonplaceholder.typicode.com/users"
   );
+  console.log(response);
   return response.data;
 });
 
